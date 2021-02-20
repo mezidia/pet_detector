@@ -1,4 +1,23 @@
 const display = () => {
+  function insertApi(lastNode) {
+    const el = document.createElement('script');
+    el.src = 'https://www.google.com/recaptcha/api.js';
+    el.defer = true;
+    el.async = true;
+    el.id = 'api';
+    lastNode.after(el);
+  }
+  let lastNode = document.head.childNodes[document.head.childNodes.length - 2];
+  if (lastNode.id === 'mainScr') {
+    console.log(lastNode);
+    insertApi(lastNode);
+  } else if (lastNode.id === 'api') {
+    console.log(lastNode);
+    lastNode.remove();
+    lastNode = document.head.childNodes[document.head.childNodes.length - 2];
+    insertApi(lastNode);
+  }
+
   return `<div class="container" style="max-width: 550px;">
     <form action="/" method="POST">
       <fieldset>
