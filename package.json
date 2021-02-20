@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mezidia/int20h_project#readme",
   "dependencies": {
-    "mongoose": "^5.11.17"
+    "mongoose": "^5.11.17",
+    "nodemailer": "^6.4.18"
   }
 }
