@@ -23,19 +23,11 @@ const display = (data) => {
     ${data.data.map(pet => `<div class="card" style="min-width: 100px">
       <img class="card-img-top" src="${pet.image}" alt="Фотографія тварини">
       <div class="card-body">
-<<<<<<< HEAD
         <h5 class="card-title">Вид - ${pet.animal}</h5>
         ${pet.breed ? `<h6>Порода тварини - ${pet.breed} </h6>` : ''}
         <h6>Колір тварини - ${pet.color}</h6>
         ${pet.description ? `<h6>Опис тварини - ${pet.description} </h6>` : ''}
-        <button type="button" class="infobtn btn btn-primary" id="${pet.id}">Info</button>
-=======
-        <h5 class="card-title">Вид ${pet.animal}</h5>
-        <h6>${pet.breed}</h6>
-        <h6>${pet.color}</h6>
-        <h6>${pet.description}</h6>
         <button type="button" class="infobtn btn btn-primary ${data.status}" id="${pet._id}">Info</button>
->>>>>>> 19907648b8aff58edbb84a259c7bb8680f330e85
       </div>
       <div class="card-footer">
         <small class="text-muted">Опрелюднено: ${getNormalTimeStr(pet.date)}</small>
