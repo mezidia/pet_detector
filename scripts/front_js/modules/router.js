@@ -18,8 +18,8 @@ export default class Router {
 
   getShit(midURL) {
     return (endURL = '') => ({
-      'found': {viewName: endURL ? 'petInfoPage' : 'mainPage', endpointName: endURL ? `case/found/${endURL}` : 'found'},
-      'lost': {viewName: endURL ? 'petInfoPage' : 'mainPage', endpointName: endURL ? `case/lost/${endURL}` : 'lost'},
+      'found': {viewName: endURL ? 'post' : 'mainPage', endpointName: endURL ? `case/found/${endURL}` : 'found'},
+      'lost': {viewName: endURL ? 'post' : 'mainPage', endpointName: endURL ? `case/lost/${endURL}` : 'lost'},
       'lostForm': {viewName: 'lostForm', endpointName: ''},
       'foundForm': {viewName: 'foundForm', endpointName: ''}
     })[midURL] || {viewName: 'mainPage', endpointName: 'found'};
