@@ -37,7 +37,8 @@ class Server {
   handleRequest(req, res) {
     let name = req.url;
     const code = name.split('/')[0];
-    if (name === '/newFound') {
+    console.log(name);
+    if (name === '/found') {
       let body = [];
       req.on('data', (chunk) => {
       body.push(chunk);
