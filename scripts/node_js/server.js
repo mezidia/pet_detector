@@ -37,6 +37,16 @@ class Server {
   handleRequest(req, res) {
     let name = req.url;
     const code = name.split('/')[0];
+    if (name === '/newFound') {
+      let body = [];
+      req.on('data', (chunk) => {
+      body.push(chunk);
+      }).on('end', () => {
+      body = Buffer.concat(body).toString();
+      // at this point, `body` has the entire request body stored in it as a string
+      console.log(JSON.parse(body));
+      });
+    }
     if (name === '/lost' || name === '/found') this.returnByTableName(name, res);
     else if (code === 'code') this.returnById(name, res);
     else this.handleFile(name, res);
