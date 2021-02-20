@@ -47,15 +47,14 @@ const display = () => {
         <h5>Оберіть колір, що найбільше підходить тварині</h5>
         <div class="form-group">
           <select id="color-lost" class="custom-select">
-            <option selected="" value="Руда">Рудий</option>
-            <option value="Чорно біла">Чорно біла</option>
+            <option selected="" value="Рудий">Рудий</option>
+            <option value="Білий" id="white" >Білий</option>
             <option value="Чорний">Чорний</option>
             <option value="Зелений">Зелений</option>
-            <option value="Темно зелений">Темно зелений</option>
-            <option value="Зелений та синій">Зелений та синій</option>
+            <option value="Синій">Синій</option>
             <option value="Рожевий">Рожевий</option>
-            <option value="Чорний та зелений">Чорний та зелений</option>
-            <option value="Бура">Бурий</option>
+            <option value="Червоний">Червоний</option>
+            <option value="Бурий">Бурий</option>
             <option value="Сірий">Сірий</option>
           </select>
         </div>
