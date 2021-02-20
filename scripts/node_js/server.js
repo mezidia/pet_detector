@@ -28,16 +28,30 @@ class Server {
   
       this.server = http.createServer();
       this.server.listen(port, () => console.log('Listening on port ' + port));
-      this.server.on('request', this.handleRequest);
+      this.server.on('request', (req, res) => this.handleRequest(req, res));
     }
-    //this.addNew();
     return Server._instance;
+  }
+
+  async returnByTableName(name, res) {
+    console.log(name);
+    const data = await this.database.getAllByTableName(name);
+    console.log(data);
+    res.writeHead(200, { 'Content-Type': `text/plain; charset=utf-8` });
+    res.write(data);
+    res.end();
   }
 
   //handles request to server
   async handleRequest(req, res) {
     let name = req.url;
-    if (routing[name]) name = routing[name];
+    await this.returnByTableName('found', null);
+    if (name === 'lost' || name === 'found') this.returnByTableName(name, res);
+    else if (routing[name]) await this.handleFile(name, res);
+  }
+
+  async handleFile(name, res) {
+    name = routing[name];
     let extention = name.split('.')[1];
     const typeAns = mime[extention];
     let data = null;
@@ -50,15 +64,13 @@ class Server {
   }
 
   async addNew() {
-    this.database.addNew('CardFind', { movingMethod: 'fly',
+    await this.database.addNew('found', { movingMethod: 'fly',
       color: 'yellow',
       breed: 'crocodile',
       description: 'like it',
       email: 'lalala@jjj.com',
       phoneNumber: '09898989'});
-    console.log(await this.database.getAllByTableName('CardFind'));
   }
-
 }
 
 module.exports = { Server };
