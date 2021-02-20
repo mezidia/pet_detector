@@ -3,15 +3,15 @@
 const nodemailer = require('nodemailer');
 const Database = require('./database').Database;
 
-async function sendMail(link, mailTo, password) {
+async function sendMail(link, mailTo) {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 587,
+    port: 465,
     secure: true,
     auth: {
-      user: 'mezgoodle@gmail.com',
-      pass: password,
+      user: 'detectorpet@gmail.com',
+      pass: 'cXiZf1YUZTNtMrX8',
     },
   });
 
@@ -49,7 +49,7 @@ async function main() {
       }
       // Send mail
       if (matches > min) {
-        sendMail(`https://pet-detector.herokuapp.com/#found/${lostedCard._id}`, lostedCard.email, '').catch(console.error);
+        sendMail(`https://pet-detector.herokuapp.com/#found/${lostedCard._id}`, lostedCard.email).catch(console.error);
       }
       
     }
