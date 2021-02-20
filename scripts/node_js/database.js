@@ -43,6 +43,16 @@ class Database {
     }
   }
 
+  async find(tableName, body) {
+    const schemas = this.schemas;
+    for (let i = 0; i < schemas.length; i++) {
+      if (schemas[i].modelName !== tableName) continue;
+      const card = await schemas[i].find(body);
+      if (card) return card;
+      else return null;
+    }
+  }
+
   //get all data by table name from db
   async getAllByTableName(tableName) {
     const schemas = this.schemas;

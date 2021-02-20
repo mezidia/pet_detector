@@ -8,8 +8,7 @@ const database = new Database('cXiZf1YUZTNtMrX8');
 async function sendMail(link, mailTo) {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: 'gmail',
-    secure: true,
+    host: 'smtp.gmail.com',
     auth: {
       user: 'detectorpet@gmail.com',
       pass: 'cXiZf1YUZTNtMrX8',
@@ -17,17 +16,21 @@ async function sendMail(link, mailTo) {
   });
 
   // send mail with defined transport object
-  const info = await transporter.sendMail({
-    from: '"Pet Detector 🐹" <https://pet-detector.herokuapp.com/>', // sender address
+  transporter.sendMail({
+    from: '"Pet Detector 🐹"', // sender address
     to: mailTo, // list of receivers
     subject: 'We found your pet!', // Subject line
-    text: `Можливо, ми знайшли вашу тваринку!. Перегляньте це оголошення: ${link}. Щиро ваша команда, Pet Detector.`, // plain text body
     html: `Можливо, ми знайшли вашу тваринку!. Перегляньте це <a href="${link}"> оголошення</a>. Щиро ваша команда, Pet Detector.`, // html body
+  }, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
   });
 }
 
-async function findMatches(card) {
-  console.log(card);
+async function findMatches(card, cardtype, id, email) {
   const fields = {'color': 2, 'animal': 4, 'breed': 3, 'date': 1};
   const min = 4;
   /*
@@ -37,9 +40,12 @@ async function findMatches(card) {
   date - 1
   min = 4
   */
-  const lostedCards = await database.getAllByTableName('lost');
 
-  console.log(lostedCards);
+  let type = cardtype;
+  if (cardtype === 'lost') type = 'found';
+  else type = 'lost';
+  const lostedCards = await database.getAllByTableName(type);
+
   for (const lostedCard of lostedCards) {
     // Do matching
     let matches = 0;
@@ -49,9 +55,9 @@ async function findMatches(card) {
       }
     }
     // Send mail
-    console.log(matches, min, lostedCard.email);
     if (matches > min) {
-      await sendMail(`https://pet-detector.herokuapp.com/#found/${lostedCard._id}`, lostedCard.email).catch(console.error);
+      await sendMail(`https://pet-detector.herokuapp.com/#${type}/${lostedCard._id}`, lostedCard.email).catch(console.error);
+      await sendMail(`https://pet-detector.herokuapp.com/#${cardtype}/${id}`, email).catch(console.error);
     }
     
   }

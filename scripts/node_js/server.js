@@ -95,9 +95,9 @@ class Server {
       body.push(chunk);
       }).on('end', async () => {
       body = JSON.parse(Buffer.concat(body).toString());
-      //console.log(body);
-      await findMatches(body);
       await this.database.addNew(name[2], body);
+      const data = await this.database.find(name[2], body);
+      await findMatches(body, name[2], data[0]._id, data[0].email);
     });
   }
 }
