@@ -11,7 +11,7 @@ function checkRecaptcha() {
   }
   else { 
     //reCaptch verified
-    alert("pass"); 
+    alert("pass");
   }
 }
 const changeHash = hash => {
