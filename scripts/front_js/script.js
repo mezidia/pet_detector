@@ -20,6 +20,7 @@ function checkRecaptcha() {
     return 1;
   }
 }
+
 const changeHash = hash => {
   router.changeURL(hash);
   mainF();
@@ -50,6 +51,7 @@ const newFound = async (evt) => {
   if (!data.img) return;
   const src = URL.createObjectURL(data.img);
   data.img = await toDataURL(src);
+  data.date = Date.now();
   console.log(data);
   client.post(data, 'card/found');
 }
@@ -68,6 +70,7 @@ const newLost = async (evt) => {
   if (!data.img) return;
   const src = URL.createObjectURL(data.img);
   data.img = await toDataURL(src);
+  data.date = Date.now();
   console.log(data);
   client.post(data, 'card/lost');
 
@@ -109,5 +112,6 @@ const mainF = () => {
     });
 
 };
+
 mainF();
 window.addEventListener('hashchange', mainF);
