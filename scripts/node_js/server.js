@@ -56,9 +56,9 @@ class Server {
     name = name.substring(1);
     const response = {};
     const data = await this.database.getAllByTableName(name);
-    for (let [key, value] in data) {
+    for (let [key] in data) {
       if (key === 'email' || 'phoneNumber' === key) continue;
-      response[key] = value;
+      response[key] = data[key];
     }
     res.writeHead(200, { 'Content-Type': `text/plain; charset=utf-8` });
     res.write(JSON.stringify(response));
