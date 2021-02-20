@@ -55,10 +55,17 @@ class Server {
   async returnByTableName(name, res) {
     name = name.substring(1);
     const response = {};
+    response.data = [];
+    response.status = name;
     const data = await this.database.getAllByTableName(name);
-    for (let [key] in data) {
-      if (key === 'email' || 'phoneNumber' === key) continue;
-      response[key] = data[key];
+    for (let i = 0; i < data.length; i++) {
+      const card = data[i]._doc;
+      response.data[i] = {};
+      for (const key in card) {
+        if (key === 'email') continue;
+        if (key === 'phoneNumber') continue;
+        response.data[i][key] = card[key];
+      }
     }
     res.writeHead(200, { 'Content-Type': `text/plain; charset=utf-8` });
     res.write(JSON.stringify(response));
