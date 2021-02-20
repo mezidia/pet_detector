@@ -3,7 +3,7 @@
 const nodemailer = require('nodemailer');
 const Database = require('./database').Database;
 
-async function sendMail(link, mailTo,password) {
+async function sendMail(link, mailTo, password) {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
