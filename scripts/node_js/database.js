@@ -1,8 +1,8 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const CardFind = require('./models/cardFind');
-const CardLost = require('./models/cardLost');
+const found = require('./models/cardFind');
+const lost = require('./models/cardLost');
 
 class Database {
   constructor(dbVar) {
@@ -14,7 +14,7 @@ class Database {
     );
 
     this.connection = mongoose.connection;
-    this.schemas = [CardFind, CardLost];
+    this.schemas = [found, lost];
 
     this.connection.once('open', () => {
       console.log('MongoDB database connection established successfully');
@@ -24,6 +24,15 @@ class Database {
       console.log('MongoDB database connection closed successfully');
     });
     return Database._instance;
+  }
+
+  async findById(tableName, id) {
+    const schemas = this.schemas;
+    for (let i = 0; i < schemas.length; i++) {
+      if (schemas[i].modelName !== tableName) continue;
+      const card = await schemas[i].findById(id);
+      if (card) return card;
+    }
   }
 
   //get all data by table name from db
@@ -37,7 +46,6 @@ class Database {
   }
 
   //creates new table in database based on name of table
-  //input example ('Category', {categoryType: 'ketchup'}), first arg string, second arg object
   //returns new object
   async addNew(tableName, args) {
     const schemas = this.schemas;

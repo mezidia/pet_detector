@@ -2,9 +2,10 @@
 
 const mongoose = require('mongoose');
 
-const cardFindSchema = mongoose.Schema({
-  movingMethod: String,
+const found = mongoose.Schema({
+  data: String,
   color: String,
+  animal: String,
   breed: String,
   description: String,
   email: String,
@@ -12,4 +13,4 @@ const cardFindSchema = mongoose.Schema({
   phoneNumber: String
 });
 
-module.exports = mongoose.model('CardFind', cardFindSchema);
+module.exports = mongoose.model('found', found);

@@ -28,15 +28,42 @@ class Server {
   
       this.server = http.createServer();
       this.server.listen(port, () => console.log('Listening on port ' + port));
-      this.server.on('request', this.handleRequest);
+      this.server.on('request', (req, res) => this.handleRequest(req, res));
     }
-    //this.addNew();
     return Server._instance;
   }
 
   //handles request to server
-  async handleRequest(req, res) {
+  handleRequest(req, res) {
     let name = req.url;
+    const code = name.split('/')[0];
+    if (name === '/lost' || name === '/found') this.returnByTableName(name, res);
+    else if (code === 'code') this.returnById(name, res);
+    else this.handleFile(name, res);
+  }
+
+  async returnById(name, res) {
+    const nameSplit = name.split('/');
+    const response = await this.database.getAllByTableName(nameSplit[1], nameSplit[2]);
+    res.writeHead(200, { 'Content-Type': `text/plain; charset=utf-8` });
+    res.write(JSON.stringify(response));
+    res.end();
+  }
+
+  async returnByTableName(name, res) {
+    name = name.substring(1);
+    const response = {};
+    const data = await this.database.getAllByTableName(name);
+    for (let [key, value] in data) {
+      if (key === 'email' || 'phoneNumber' === key) continue;
+      response[key] = value;
+    }
+    res.writeHead(200, { 'Content-Type': `text/plain; charset=utf-8` });
+    res.write(JSON.stringify(response));
+    res.end();
+  }
+
+  async handleFile(name, res) {
     if (routing[name]) name = routing[name];
     let extention = name.split('.')[1];
     const typeAns = mime[extention];
@@ -50,15 +77,13 @@ class Server {
   }
 
   async addNew() {
-    this.database.addNew('CardFind', { movingMethod: 'fly',
+    await this.database.addNew('found', { movingMethod: 'fly',
       color: 'yellow',
       breed: 'crocodile',
       description: 'like it',
       email: 'lalala@jjj.com',
       phoneNumber: '09898989'});
-    console.log(await this.database.getAllByTableName('CardFind'));
   }
-
 }
 
 module.exports = { Server };
