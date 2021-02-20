@@ -25,13 +25,6 @@ const changeHash = hash => {
   mainF();
 };
 
-const newLost = (evt) => {
-  const xml = new XMLHttpRequest();
-  const animalType = document.getElementById('animalType-found');
-  const age = document.getElementById('age-found');
-
-}
-
 async function toDataURL(url) {
   const response = await fetch(url);
   const blob = await response.blob();
@@ -58,7 +51,26 @@ const newFound = async (evt) => {
   const src = URL.createObjectURL(data.img);
   data.img = await toDataURL(src);
   console.log(data);
-  client.post(data, 'newFound');
+  client.post(data, 'card/found');
+}
+
+const newLost = async (evt) => {
+  if (!checkRecaptcha()) return;
+  const data = {};
+  data.animalType = document.getElementById('animalType-lost').value;
+  data.age = document.getElementById('age-lost').value;
+  data.color = document.getElementById('color-lost').value;
+  data.disc = document.getElementById('disc-lost').value;
+  data.email = document.getElementById('email-lost').value;
+  const imgInput = document.getElementById('img-lost');
+  data.phone = document.getElementById('phone-lost').value;
+  data.img = imgInput.files[0];
+  if (!data.img) return;
+  const src = URL.createObjectURL(data.img);
+  data.img = await toDataURL(src);
+  console.log(data);
+  client.post(data, 'card/lost');
+
 }
 
 document.addEventListener('click', (evt) => {
