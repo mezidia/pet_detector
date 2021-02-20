@@ -10,7 +10,7 @@ const display = (data) => {
     ${data.data.map(pet => `<div class="card" style="min-width: 100px">
       <img class="card-img-top" src="${pet.image}" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">${pet.animal}</h5>
+        <h5 class="card-title">Вид ${pet.animal}</h5>
         <h6>${pet.breed}</h6>
         <h6>${pet.color}</h6>
         <h6>${pet.description}</h6>

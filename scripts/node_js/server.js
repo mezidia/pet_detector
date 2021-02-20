@@ -47,6 +47,7 @@ class Server {
   async returnById(name, res) {
     const nameSplit = name.split('/');
     const response = await this.database.getAllByTableName(nameSplit[1], nameSplit[2]);
+    console.log(response);
     res.writeHead(200, { 'Content-Type': `text/plain; charset=utf-8` });
     res.write(JSON.stringify(response));
     res.end();
