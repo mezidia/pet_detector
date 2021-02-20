@@ -4,18 +4,6 @@ import RenderEngine from './modules/engine.js';
 import Router from './modules/router.js';
 import Client from './modules/client.js';
 
-<<<<<<< HEAD
-function checkRecaptcha() {
-  const response = grecaptcha.getResponse();
-  if(response.length == 0) { 
-    alert("no pass"); 
-  }
-  else { 
-    //reCaptch verified
-    alert("pass"); 
-  }
-}
-=======
 function checkRecaptcha() {
   const response = grecaptcha.getResponse();
   if(response.length == 0) { 
@@ -32,6 +20,7 @@ const changeHash = hash => {
 };
 
 document.addEventListener('click', (evt) => {
+  if (evt.target.id === 'recaptcha-submit') checkRecaptcha();
 });
 
 const router = new Router();
@@ -71,4 +60,3 @@ const mainF = () => {
 };
 mainF();
 window.addEventListener('hashchange', mainF);
->>>>>>> bb40a11839e9684fbaad9000ffd5fc0632794dc5

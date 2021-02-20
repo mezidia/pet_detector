@@ -9,13 +9,6 @@
     <script type="module" src="./scripts/front_js/script.js"></script>
   </head>
   <body>
-
-    <form action="/" method="POST">
-      <div id="g-recaptcha-box">
-        <div class="g-recaptcha" data-sitekey="6LfER2AaAAAAAAZC3D1nW1ViH6m3JBgY0Y8Z228e"></div>
-      </div>
-      <input  type="submit" onclick="checkRecaptcha();" value="Submit">
-    </form>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <a class="navbar-brand" href="#">Знайдені улюбленці</a>
 
@@ -85,5 +78,11 @@
         </div>
       </div>
     </footer>
+    <form action="/" method="POST">
+      <div id="g-recaptcha-box">
+        <div class="g-recaptcha" data-sitekey="6LfER2AaAAAAAAZC3D1nW1ViH6m3JBgY0Y8Z228e"></div>
+      </div>
+      <input type="submit" id="recaptcha-submit" value="Submit">
+    </form>
   </body>
 </html>
