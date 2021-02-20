@@ -77,12 +77,25 @@ class Server {
   }
 
   async addNew() {
-    await this.database.addNew('found', { movingMethod: 'fly',
+    await this.database.addNew('found', { 
+      date: Date.now(),
       color: 'yellow',
+      animal: 'it swims',
       breed: 'crocodile',
       description: 'like it',
+      photo: 'some photo',
       email: 'lalala@jjj.com',
       phoneNumber: '09898989'});
+
+    await this.database.addNew('lost', { 
+      date: Date.now(),
+      color: 'green',
+      animal: 'bird',
+      breed: 'parrot',
+      description: 'strange',
+      photo: 'photo',
+      email: 'lalal7a@jjj.com',
+      phoneNumber: '409898989'});
   }
 }
 

@@ -9,7 +9,7 @@ class Database {
     if (Database._instance) return Database._instance;
     Database._instance = this;
     mongoose.connect(
-      `mongodb+srv://mezgoodle:${dbVar}@grechkacom.dwpvy.mongodb.net/database?retryWrites=true&w=majority`,
+      `mongodb+srv://mezgoodle:${dbVar}@grechkacom.dwpvy.mongodb.net/bestpet?retryWrites=true&w=majority`,
       { useNewUrlParser: true, useUnifiedTopology: true }
     );
 
@@ -32,6 +32,14 @@ class Database {
       if (schemas[i].modelName !== tableName) continue;
       const card = await schemas[i].findById(id);
       if (card) return card;
+    }
+  }
+
+  async deleteById(tableName, id) {
+    const schemas = this.schemas;
+    for (let i = 0; i < schemas.length; i++) {
+      if (schemas[i].modelName !== tableName) continue;
+      await schemas[i].deleteOne({_id: id});
     }
   }
 
