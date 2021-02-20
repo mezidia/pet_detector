@@ -2,6 +2,7 @@
 
 export default class Client {
   getData(endpoint) {
+    if(!endpoint) return;
     return fetch(`/${endpoint}`)
       .then(response => response.json())
       .then(data => console.log(data))
