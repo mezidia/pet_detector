@@ -58,6 +58,7 @@ class Server {
     response.data = [];
     response.status = name;
     const data = await this.database.getAllByTableName(name);
+    console.log(data);
     for (let i = 0; i < data.length; i++) {
       const card = data[i]._doc;
       response.data[i] = {};
@@ -92,8 +93,7 @@ class Server {
       body.push(chunk);
       }).on('end', async () => {
       body = Buffer.concat(body).toString();
-      console.log(body);
-      await this.database.addNew(name[1], body);
+      await this.database.addNew(name[2], JSON.parse(body));
     });
   }
 }
