@@ -1,4 +1,5 @@
 const display = (data) => {
+  data = data.data;
   return `
   <div class="container-fluid">
     <div class="row">
