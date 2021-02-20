@@ -20,8 +20,8 @@ async function sendMail(link, mailTo) {
     from: '"Pet Detector 🐹" <https://pet-detector.herokuapp.com/>', // sender address
     to: mailTo, // list of receivers
     subject: 'We found your pet!', // Subject line
-    text: `Maybe, we have founded your pet. Look at this: ${link}`, // plain text body
-    html: `Maybe, we have founded your pet. Look at <a href="${link}">this</a>`, // html body
+    text: `Можливо, ми знайшли вашу тваринку!. Перегляньте це оголошення: ${link}. Щиро ваша команда, Pet Detector.`, // plain text body
+    html: `Можливо, ми знайшли вашу тваринку!. Перегляньте це <a href="${link}"> оголошення</a>. Щиро ваша команда, Pet Detector.`, // html body
   });
 }
 
