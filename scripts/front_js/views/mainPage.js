@@ -16,7 +16,7 @@ const display = (data) => {
         <button type="button" class="infobtn btn btn-primary" id="${pet.id}">Info</button>
       </div>
       <div class="card-footer">
-        <small class="text-muted">Last updated ${pet.date}</small>
+        <small class="text-muted">Опрелюднено: ${pet.date}</small>
       </div>
     </div>`).join('\n')}
   </div>
@@ -24,7 +24,7 @@ const display = (data) => {
     <button id="lost-assign" class="col-md-6 btn btn-primary btn-50">Сповістити про втраченого улюбленця</button>
     <button id="found-assign" class="col-md-6 btn-primary btn-50">Сповістити про знайденого улюбленця</button>
   </div>
-`;
+  `;
 
 };
 
