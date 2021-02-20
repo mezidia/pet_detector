@@ -80,20 +80,8 @@ document.addEventListener('click', (evt) => {
 
 async function loadMain() {
   try {
-    const view = (await import('./views/mainPage.js')).default
-    const data = {
-      status: 'lost',
-      pets: [
-        {
-          animal: 'dog',
-          breed: 'idk',
-          color: '#FFFFFF',
-          description: 'description',
-          id: 'pet ID hear',
-          date: new Date().now(),
-        },
-      ]
-    };//await client.getData('found')
+    const view = (await import('./views/mainPage.js')).default;
+    const data = await client.getData('found');
     engine.render(view(data));
   } catch (e) {
     console.log(e);
