@@ -1,22 +1,5 @@
 const display = () => {
-  function insertApi(lastNode) {
-    const el = document.createElement('script');
-    el.src = 'https://www.google.com/recaptcha/api.js';
-    el.defer = true;
-    el.async = true;
-    el.id = 'api';
-    lastNode.after(el);
-  }
-  let lastNode = document.head.childNodes[document.head.childNodes.length - 2];
-  if (lastNode.id === 'mainScr') {
-    console.log(lastNode);
-    insertApi(lastNode);
-  } else if (lastNode.id === 'api') {
-    console.log(lastNode);
-    lastNode.remove();
-    lastNode = document.head.childNodes[document.head.childNodes.length - 2];
-    insertApi(lastNode);
-  }
+
 
   return `<div class="container" style="max-width: 550px;"><form action="/" method="POST">
       <fieldset>
@@ -42,27 +25,6 @@ const display = () => {
             <option value="Зрілого віку">Зрілого віку</option>
             <option value="Старенька">Старенька</option>
           </select>
-        </div>
-        <h5>Оберіть колір, що найбільше підходить тварині</h5>
-        <div class="form-group">
-          <select id="color-found" class="custom-select">
-            <option selected="" value="Руда">Рудий</option>
-            <option value="Чорно біла">Чорно біла</option>
-            <option value="Чорний">Чорний</option>
-            <option value="Зелений">Зелений</option>
-            <option value="Темно зелений">Темно зелений</option>
-            <option value="Зелений та синій">Зелений та синій</option>
-            <option value="Рожевий">Рожевий</option>
-            <option value="Чорний та зелений">Чорний та зелений</option>
-            <option value="Бура">Бурий</option>
-            <option value="Сірий">Сірий</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <h5>Прикріпіть будь ласка фото тварини</h5>
-          <input type="file" accept=".jpg, .jpeg, .png" class="form-control-file" id="img-found" aria-describedby="fileHelp" required>
-          <small id="fileHelp" class="form-text text-muted">Без фото улюбленця, господар не зможе його опізнати.</small>
-        </div>
         <div class="form-group">
           <h5>Опишіть тваринку</h5>
           <textarea class="form-control" id="disc-found" rows="3" placeholder="Можете зазначити особливі прикмети тварини чи місце де ви знайшли її, надати більш детальний опис." ></textarea>

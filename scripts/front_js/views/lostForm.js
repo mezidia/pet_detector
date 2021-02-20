@@ -85,7 +85,7 @@ const display = () => {
       <div id="g-recaptcha-box">
         <div class="g-recaptcha" data-sitekey="6LfER2AaAAAAAAZC3D1nW1ViH6m3JBgY0Y8Z228e"></div>
       </div>
-      <button type="button" id="lost-submit" class="btn btn-primary">Надіслати</button>
+      <button type="submit" id="lost-submit" class="btn btn-primary">Надіслати</button>
     </form>
     </div>
     `;
