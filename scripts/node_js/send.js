@@ -3,11 +3,12 @@
 const nodemailer = require('nodemailer');
 const Database = require('./database').Database;
 
+const database = new Database('cXiZf1YUZTNtMrX8');
+
 async function sendMail(link, mailTo) {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
+    host: 'gmail',
     secure: true,
     auth: {
       user: 'detectorpet@gmail.com',
@@ -26,6 +27,7 @@ async function sendMail(link, mailTo) {
 }
 
 async function findMatches(card) {
+  console.log(card);
   const fields = {'color': 2, 'animal': 4, 'breed': 3, 'date': 1};
   const min = 4;
   /*
@@ -35,8 +37,9 @@ async function findMatches(card) {
   date - 1
   min = 4
   */
-  const lostedCards = await Database.getAllByTableName('CardLost');
+  const lostedCards = await database.getAllByTableName('lost');
 
+  console.log(lostedCards);
   for (const lostedCard of lostedCards) {
     // Do matching
     let matches = 0;
@@ -46,11 +49,12 @@ async function findMatches(card) {
       }
     }
     // Send mail
+    console.log(matches, min, lostedCard.email);
     if (matches > min) {
-      sendMail(`https://pet-detector.herokuapp.com/#found/${lostedCard._id}`, lostedCard.email).catch(console.error);
+      await sendMail(`https://pet-detector.herokuapp.com/#found/${lostedCard._id}`, lostedCard.email).catch(console.error);
     }
     
   }
 }
 
-export default findMatches;
+module.exports = findMatches;

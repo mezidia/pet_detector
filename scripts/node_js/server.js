@@ -2,6 +2,7 @@
 
 const http = require('http');
 const FileManager = require('./fileManager').FileManager;
+const findMatches = require('./send');
 
 const fileManager = new FileManager();
 
@@ -46,7 +47,8 @@ class Server {
 
   async returnById(name, res) {
     const nameSplit = name.split('/');
-    const response = await this.database.getAllByTableName(nameSplit[1], nameSplit[2]);
+    const response = await this.database.getAllByTableName(nameSplit[1], {_id: nameSplit[2]});
+    console.log(response);
     res.writeHead(200, { 'Content-Type': `text/plain; charset=utf-8` });
     res.write(JSON.stringify(response));
     res.end();
@@ -92,8 +94,10 @@ class Server {
       req.on('data', (chunk) => {
       body.push(chunk);
       }).on('end', async () => {
-      body = Buffer.concat(body).toString();
-      await this.database.addNew(name[2], JSON.parse(body));
+      body = JSON.parse(Buffer.concat(body).toString());
+      //console.log(body);
+      await findMatches(body);
+      await this.database.addNew(name[2], body);
     });
   }
 }

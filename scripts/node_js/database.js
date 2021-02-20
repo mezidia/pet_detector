@@ -39,7 +39,7 @@ class Database {
     const schemas = this.schemas;
     for (let i = 0; i < schemas.length; i++) {
       if (schemas[i].modelName !== tableName) continue;
-      await schemas[i].deleteOne({_id: id});
+      await schemas[i].deleteOne(id);
     }
   }
 

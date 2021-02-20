@@ -7,7 +7,7 @@ const lost = mongoose.Schema({
   color: String,
   animal: String,
   breed: String,
-  age: Number,
+  age: String,
   photo: String,
   description: String,
   email: String,
