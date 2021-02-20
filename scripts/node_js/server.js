@@ -36,20 +36,11 @@ class Server {
   //handles request to server
   handleRequest(req, res) {
     let name = req.url;
-    const code = name.split('/')[0];
     console.log(name);
-    if (name === '/found') {
-      let body = [];
-      req.on('data', (chunk) => {
-      body.push(chunk);
-      }).on('end', () => {
-      body = Buffer.concat(body).toString();
-      // at this point, `body` has the entire request body stored in it as a string
-      console.log(JSON.parse(body));
-      });
-    }
+    const code = name.split('/');
     if (name === '/lost' || name === '/found') this.returnByTableName(name, res);
-    else if (code === 'code') this.returnById(name, res);
+    else if (code[1] === 'card') this.addNew(req, name);
+    else if (code[0] === 'code') this.returnById(name, res);
     else this.handleFile(name, res);
   }
 
@@ -65,9 +56,9 @@ class Server {
     name = name.substring(1);
     const response = {};
     const data = await this.database.getAllByTableName(name);
-    for (let [key, value] in data) {
+    for (let [key] in data) {
       if (key === 'email' || 'phoneNumber' === key) continue;
-      response[key] = value;
+      response[key] = data[key];
     }
     res.writeHead(200, { 'Content-Type': `text/plain; charset=utf-8` });
     res.write(JSON.stringify(response));
@@ -87,13 +78,16 @@ class Server {
     res.end();
   }
 
-  async addNew() {
-    await this.database.addNew('found', { movingMethod: 'fly',
-      color: 'yellow',
-      breed: 'crocodile',
-      description: 'like it',
-      email: 'lalala@jjj.com',
-      phoneNumber: '09898989'});
+  async addNew(req, name) {
+    name = name.split('/');
+    let body = [];
+      req.on('data', (chunk) => {
+      body.push(chunk);
+      }).on('end', async () => {
+      body = Buffer.concat(body).toString();
+      console.log(body);
+      await this.database.addNew(name[1], body);
+    });
   }
 }
 

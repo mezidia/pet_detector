@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 const lost = mongoose.Schema({
-  data: String,
+  date: String,
   color: String,
   animal: String,
   breed: String,
