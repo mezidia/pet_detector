@@ -6,7 +6,7 @@ import Client from './modules/client.js';
 
 function checkRecaptcha() {
   const response = grecaptcha.getResponse();
-  if(response.length == 0) { 
+  if(response.length === 0) {
     alert("no pass"); 
   }
   else { 
