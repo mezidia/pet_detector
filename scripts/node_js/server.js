@@ -33,25 +33,25 @@ class Server {
     return Server._instance;
   }
 
-  async returnByTableName(name, res) {
+  //handles request to server
+  handleRequest(req, res) {
+    let name = req.url;
     console.log(name);
+    if (name === '/lost' || name === '/found') this.returnByTableName(name, res);
+    else this.handleFile(name, res);
+  }
+
+  async returnByTableName(name, res) {
+    name = name.substring(1);
     const data = await this.database.getAllByTableName(name);
     console.log(data);
     res.writeHead(200, { 'Content-Type': `text/plain; charset=utf-8` });
-    res.write(data);
+    res.write(JSON.stringify(data));
     res.end();
   }
 
-  //handles request to server
-  async handleRequest(req, res) {
-    let name = req.url;
-    await this.returnByTableName('found', null);
-    if (name === 'lost' || name === 'found') this.returnByTableName(name, res);
-    else if (routing[name]) await this.handleFile(name, res);
-  }
-
   async handleFile(name, res) {
-    name = routing[name];
+    if (routing[name]) name = routing[name];
     let extention = name.split('.')[1];
     const typeAns = mime[extention];
     let data = null;
