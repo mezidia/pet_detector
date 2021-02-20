@@ -2,10 +2,10 @@
 
 const mongoose = require('mongoose');
 
-const cardLostSchema = mongoose.Schema({
-  name: String,
-  movingMethod: String,
+const lost = mongoose.Schema({
+  data: String,
   color: String,
+  animal: String,
   breed: String,
   age: Number,
   photo: String,
@@ -14,4 +14,4 @@ const cardLostSchema = mongoose.Schema({
   phoneNumber: String
 });
 
-module.exports = mongoose.model('CardLost', cardLostSchema);
+module.exports = mongoose.model('lost', lost);

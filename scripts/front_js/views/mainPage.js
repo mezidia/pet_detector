@@ -24,7 +24,7 @@ const display = (data) => {
     <button id="lost-assign" class="col-md-6 btn btn-primary btn-50">Сповістити про втраченого улюбленця</button>
     <button id="found-assign" class="col-md-6 btn-primary btn-50">Сповістити про знайденого улюбленця</button>
   </div>
-`;
+  `;
 
 };
 
