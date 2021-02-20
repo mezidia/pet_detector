@@ -4,14 +4,20 @@ import RenderEngine from './modules/engine.js';
 import Router from './modules/router.js';
 import Client from './modules/client.js';
 
+const router = new Router();
+const client = new Client();
+const engine = new RenderEngine();
+
 function checkRecaptcha() {
   const response = grecaptcha.getResponse();
   if(response.length === 0) {
-    alert("no pass"); 
+    alert("no pass");
+    return 0;
   }
   else { 
     //reCaptch verified
     alert("pass");
+    return 1;
   }
 }
 const changeHash = hash => {
@@ -19,13 +25,46 @@ const changeHash = hash => {
   mainF();
 };
 
-document.addEventListener('click', (evt) => {
-  if (evt.target.id === 'recaptcha-submit') checkRecaptcha();
-});
+const newLost = (evt) => {
+  const xml = new XMLHttpRequest();
+  const animalType = document.getElementById('animalType-found');
+  const age = document.getElementById('age-found');
 
-const router = new Router();
-const client = new Client();
-const engine = new RenderEngine();
+}
+
+async function toDataURL(url) {
+  const response = await fetch(url);
+  const blob = await response.blob();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
+const newFound = async (evt) => {
+  if (!checkRecaptcha()) return;
+  const data = {};
+  data.animalType = document.getElementById('animalType-found').value;
+  data.age = document.getElementById('age-found').value;
+  data.color = document.getElementById('color-found').value;
+  data.disc = document.getElementById('disc-found').value;
+  data.email = document.getElementById('email-found').value;
+  const imgInput = document.getElementById('img-found');
+  data.phone = document.getElementById('phone-found').value;
+  data.img = imgInput.files[0];
+  if (!data.img) return;
+  const src = URL.createObjectURL(data.img);
+  data.img = await toDataURL(src);
+  console.log(data);
+  client.post(data, 'newFound');
+}
+
+document.addEventListener('click', (evt) => {
+  if (evt.target.id === 'lost-submit') newLost();
+  if (evt.target.id === 'found-submit') newFound();
+});
 
 async function loadMain() {
   try {
