@@ -36,10 +36,11 @@ class Server {
   //handles request to server
   handleRequest(req, res) {
     let name = req.url;
-    const code = name.split('/')[0];
+    console.log(name);
+    const code = name.split('/');
     if (name === '/lost' || name === '/found') this.returnByTableName(name, res);
-    else if (name === '/card') this.addNew(req, name, res);
-    else if (code === 'code') this.returnById(name, res);
+    else if (code[1] === 'card') this.addNew(req, name);
+    else if (code[0] === 'code') this.returnById(name, res);
     else this.handleFile(name, res);
   }
 
@@ -77,35 +78,16 @@ class Server {
     res.end();
   }
 
-  async addNew(req, name, res) {
+  async addNew(req, name) {
     name = name.split('/');
     let body = [];
       req.on('data', (chunk) => {
       body.push(chunk);
-      }).on('end', () => {
+      }).on('end', async () => {
       body = Buffer.concat(body).toString();
       console.log(body);
-      await this.database.addNew(name[0], body);
+      await this.database.addNew(name[1], body);
     });
-    /*await this.database.addNew('found', { 
-      date: Date.now(),
-      color: 'yellow',
-      animal: 'it swims',
-      breed: 'crocodile',
-      description: 'like it',
-      photo: 'some photo',
-      email: 'lalala@jjj.com',
-      phoneNumber: '09898989'});
-
-    await this.database.addNew('lost', { 
-      date: Date.now(),
-      color: 'green',
-      animal: 'bird',
-      breed: 'parrot',
-      description: 'strange',
-      photo: 'photo',
-      email: 'lalal7a@jjj.com',
-      phoneNumber: '409898989'});*/
   }
 }
 
