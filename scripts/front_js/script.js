@@ -1,5 +1,6 @@
 'use strict';
-import RenderEngine from './modules/engine';
+
+import RenderEngine from './modules/engine.js';
 import Router from './modules/router.js';
 import Client from './modules/client.js';
 
