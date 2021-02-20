@@ -25,7 +25,7 @@ async function sendMail(link, mailTo) {
   });
 }
 
-async function main() {
+async function findMatches(card) {
   const fields = {'color': 2, 'animal': 4, 'breed': 3, 'date': 1};
   const min = 4;
   /*
@@ -35,25 +35,22 @@ async function main() {
   date - 1
   min = 4
   */
-  const foundedCards = await Database.getAllByTableName('CardFind');
   const lostedCards = await Database.getAllByTableName('CardLost');
 
-  for (const foundedCard of foundedCards) {
-    for (const lostedCard of lostedCards) {
-      // Do matching
-      let matches = 0;
-      for (const field of Object.keys(fields)) {
-        if (foundedCard[field] === lostedCard[field]) {
-          matches += fields[field];
-        }
+  for (const lostedCard of lostedCards) {
+    // Do matching
+    let matches = 0;
+    for (const field of Object.keys(fields)) {
+      if (card[field] === lostedCard[field]) {
+        matches += fields[field];
       }
-      // Send mail
-      if (matches > min) {
-        sendMail(`https://pet-detector.herokuapp.com/#found/${lostedCard._id}`, lostedCard.email).catch(console.error);
-      }
-      
     }
+    // Send mail
+    if (matches > min) {
+      sendMail(`https://pet-detector.herokuapp.com/#found/${lostedCard._id}`, lostedCard.email).catch(console.error);
+    }
+    
   }
 }
 
-main();
+export default findMatches;
