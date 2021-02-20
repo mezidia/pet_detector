@@ -36,17 +36,30 @@ class Server {
   //handles request to server
   handleRequest(req, res) {
     let name = req.url;
-    console.log(name);
+    const code = name.split('/')[0];
     if (name === '/lost' || name === '/found') this.returnByTableName(name, res);
+    else if (code === 'code') this.returnById(name, res);
     else this.handleFile(name, res);
+  }
+
+  async returnById(name, res) {
+    const nameSplit = name.split('/');
+    const response = await this.database.getAllByTableName(nameSplit[1], nameSplit[2]);
+    res.writeHead(200, { 'Content-Type': `text/plain; charset=utf-8` });
+    res.write(JSON.stringify(response));
+    res.end();
   }
 
   async returnByTableName(name, res) {
     name = name.substring(1);
+    const response = {};
     const data = await this.database.getAllByTableName(name);
-    console.log(data);
+    for (let [key, value] in data) {
+      if (key === 'email' || 'phoneNumber' === key) continue;
+      response[key] = value;
+    }
     res.writeHead(200, { 'Content-Type': `text/plain; charset=utf-8` });
-    res.write(JSON.stringify(data));
+    res.write(JSON.stringify(response));
     res.end();
   }
 

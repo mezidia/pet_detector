@@ -26,6 +26,15 @@ class Database {
     return Database._instance;
   }
 
+  async findById(tableName, id) {
+    const schemas = this.schemas;
+    for (let i = 0; i < schemas.length; i++) {
+      if (schemas[i].modelName !== tableName) continue;
+      const card = await schemas[i].findById(id);
+      if (card) return card;
+    }
+  }
+
   //get all data by table name from db
   async getAllByTableName(tableName) {
     const schemas = this.schemas;
