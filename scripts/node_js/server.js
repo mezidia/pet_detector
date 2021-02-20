@@ -21,15 +21,16 @@ const mime = {
 };
 
 class Server {
-  constructor(port) {
+  constructor(port, database) {
     if (!Server._instance) {
       Server._instance = this;
+      this.database = database;
   
       this.server = http.createServer();
       this.server.listen(port, () => console.log('Listening on port ' + port));
       this.server.on('request', this.handleRequest);
-      const server = this.server;
     }
+    //this.addNew();
     return Server._instance;
   }
 
@@ -46,6 +47,16 @@ class Server {
       res.write(data);
     }
     res.end();
+  }
+
+  async addNew() {
+    this.database.addNew('CardFind', { movingMethod: 'fly',
+      color: 'yellow',
+      breed: 'crocodile',
+      description: 'like it',
+      email: 'lalala@jjj.com',
+      phoneNumber: '09898989'});
+    console.log(await this.database.getAllByTableName('CardFind'));
   }
 
 }
