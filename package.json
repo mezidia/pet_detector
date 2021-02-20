@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mezidia/int20h_project/issues"
   },
-  "homepage": "https://github.com/mezidia/int20h_project#readme"
+  "homepage": "https://github.com/mezidia/int20h_project#readme",
+  "dependencies": {
+    "mongoose": "^5.11.17"
+  }
 }
