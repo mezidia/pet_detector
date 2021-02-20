@@ -37,17 +37,8 @@ class Server {
   handleRequest(req, res) {
     let name = req.url;
     const code = name.split('/')[0];
-    if (name === '/newFound') {
-      let body = [];
-      req.on('data', (chunk) => {
-      body.push(chunk);
-      }).on('end', () => {
-      body = Buffer.concat(body).toString();
-      // at this point, `body` has the entire request body stored in it as a string
-      console.log(JSON.parse(body));
-      });
-    }
     if (name === '/lost' || name === '/found') this.returnByTableName(name, res);
+    else if (name === '/card') this.addNew(req, name, res);
     else if (code === 'code') this.returnById(name, res);
     else this.handleFile(name, res);
   }
@@ -86,8 +77,17 @@ class Server {
     res.end();
   }
 
-  async addNew() {
-    await this.database.addNew('found', { 
+  async addNew(req, name, res) {
+    name = name.split('/');
+    let body = [];
+      req.on('data', (chunk) => {
+      body.push(chunk);
+      }).on('end', () => {
+      body = Buffer.concat(body).toString();
+      console.log(body);
+      await this.database.addNew(name[0], body);
+    });
+    /*await this.database.addNew('found', { 
       date: Date.now(),
       color: 'yellow',
       animal: 'it swims',
@@ -105,7 +105,7 @@ class Server {
       description: 'strange',
       photo: 'photo',
       email: 'lalal7a@jjj.com',
-      phoneNumber: '409898989'});
+      phoneNumber: '409898989'});*/
   }
 }
 
