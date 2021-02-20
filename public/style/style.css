@@ -1,0 +1,10 @@
+.assign-btns {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    bottom: 3vh;
+}
+
+.btn-50 {
+    height: 50px;
+}

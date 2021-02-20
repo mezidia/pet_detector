@@ -5,10 +5,10 @@
     <link href="./public/bootstrap.css" rel="stylesheet">
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <title>Lost and found pets</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script type="module" src="./scripts/front_js/script.js"></script>
   </head>
   <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <a class="navbar-brand" href="#">Знайдені улюбленці</a>
 
@@ -70,7 +70,7 @@
         </div>
         <hr>
         <div class="row d-flex align-items-center">
-          <p class="text-center text-md-сenter">© 2020 Copyright:
+          <p class="text-center text-md-сenter">© 2021 Copyright:
             <a href="https://github.com/mezidia" >
               <strong class="text-white">Hackatsuki</strong>
             </a>
@@ -78,5 +78,39 @@
         </div>
       </div>
     </footer>
+    <form action="/" method="POST">
+      <fieldset>
+        <legend>Опишіть тваринку</legend>
+        <div class="form-group">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
+            <label class="custom-control-label" for="customCheck1">Тварина має ошийник?</label>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
+            <label class="custom-control-label" for="customCheck1">Тварина має ошийник?</label>
+          </div>
+        </div>
+        <h5>Оберіть колір, що найбільше підходить тварині</h5>
+        <div class="form-group">
+          <select class="custom-select">
+            <option selected="" value="Руда">Рудий</option>
+            <option value="Чорно біла">Чорно біла</option>
+            <option value="Чорний">Чорний</option>
+            <option value="Зелений">Зелений</option>
+            <option value="Темно зелений">Темно зелений</option>
+            <option value="Зелений та синій">Зелений та синій</option>
+            <option value="Рожевий">Рожевий</option>
+            <option value="Чорний та зелений">Чорний та зелений</option>
+            <option value="Бура">Бурий</option>
+            <option value="Сірий">Сірий</option>
+          </select>
+        </div>
+      </fieldset>
+      <div id="g-recaptcha-box">
+        <div class="g-recaptcha" data-sitekey="6LfER2AaAAAAAAZC3D1nW1ViH6m3JBgY0Y8Z228e"></div>
+      </div>
+      <input type="submit" id="recaptcha-submit" value="Submit">
+    </form>
   </body>
 </html>

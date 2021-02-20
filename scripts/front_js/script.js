@@ -4,12 +4,23 @@ import RenderEngine from './modules/engine.js';
 import Router from './modules/router.js';
 import Client from './modules/client.js';
 
+function checkRecaptcha() {
+  const response = grecaptcha.getResponse();
+  if(response.length === 0) {
+    alert("no pass"); 
+  }
+  else { 
+    //reCaptch verified
+    alert("pass");
+  }
+}
 const changeHash = hash => {
   router.changeURL(hash);
   mainF();
 };
 
 document.addEventListener('click', (evt) => {
+  if (evt.target.id === 'recaptcha-submit') checkRecaptcha();
 });
 
 const router = new Router();
