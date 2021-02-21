@@ -38,7 +38,6 @@ async function toDataURL(url) {
 }
 
 const newFound = async (evt) => {
-  if (!checkRecaptcha()) return 0;
   const data = {};
   data.animal = document.getElementById('animalType-found').value;
   data.age = document.getElementById('age-found').value;
@@ -83,6 +82,7 @@ const newLost = async (evt) => {
 
 }
 const onPostSubmit = () => {
+  if (!checkRecaptcha()) return;
   console.log(router.getHash());
   client.getData(`case/${router.getHash()}`)
   .then((data) => {
