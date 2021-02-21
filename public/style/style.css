@@ -22,5 +22,9 @@
 }
 
 h2 {
-    font-size: 24px;
+    font-size: calc(20px + 0.2vw);
+}
+
+h1 {
+    font-size: 50px;
 }
