@@ -14,12 +14,9 @@ const MAXIMGSIZE = 100000;
 function checkRecaptcha() {
   const response = grecaptcha.getResponse();
   if(response.length === 0) {
-    alert("no pass");
     return 0;
   }
   else { 
-    //reCaptch verified
-    alert("pass");
     return 1;
   }
 }
@@ -41,7 +38,7 @@ async function toDataURL(url) {
 }
 
 const newFound = async (evt) => {
-  if (!checkRecaptcha()) return;
+  if (!checkRecaptcha()) return 0;
   const data = {};
   data.animal = document.getElementById('animalType-found').value;
   data.age = document.getElementById('age-found').value;
@@ -51,11 +48,11 @@ const newFound = async (evt) => {
   data.breed = document.getElementById('breed-found').value;
   const imgInput = document.getElementById('img-found');
   data.phoneNumber = document.getElementById('phone-found').value;
+  if (!data.photo) return 0;
   data.photo = imgInput.files[0];
   const size = data.photo.size;
   console.log(size);
-  if (size > MAXIMGSIZE) return;
-  if (!data.photo) return;
+  if (size > MAXIMGSIZE) return 0;
   const src = URL.createObjectURL(data.photo);
   data.photo = await toDataURL(src);
   data.date = Date.now();
@@ -64,7 +61,7 @@ const newFound = async (evt) => {
 }
 
 const newLost = async (evt) => {
-  if (!checkRecaptcha()) return;
+  if (!checkRecaptcha()) return 0;
   const data = {};
   data.animal = document.getElementById('animalType-lost').value;
   data.age = document.getElementById('age-lost').value;
@@ -74,11 +71,11 @@ const newLost = async (evt) => {
   data.breed = document.getElementById('breed-lost').value;
   const imgInput = document.getElementById('img-lost');
   data.phoneNumber = document.getElementById('phone-lost').value;
+  if (!data.photo) return 0;
   data.photo = imgInput.files[0];
   const size = data.photo.size;
   console.log(size);
-  if (size > MAXIMGSIZE) return;
-  if (!data.photo) return;
+  if (size > MAXIMGSIZE) return 0;
   const src = URL.createObjectURL(data.photo);
   data.photo = await toDataURL(src);
   data.date = Date.now();
@@ -112,13 +109,16 @@ const colorBlind = (color = true) => () => {
   }
   color = !color;
 }
-const color = colorBlind();
-document.addEventListener('click', (evt) => {
+
+document.addEventListener('submit', (evt) => {
   if (evt.target.id === 'lost-submit') newLost();
   if (evt.target.id === 'found-submit') newFound();
+});
+const color = colorBlind();
+document.addEventListener('click', (evt) => {
   if (evt.target.id === 'found-assign') changeHash('foundForm');
   if (evt.target.id === 'lost-assign') changeHash('lostForm');
-  if (evt.target.className.split(' ')[0] === 'infobtn') changeHash(`${evt.target.className.split(' ').pop()}/${evt.target.id}`);
+  if (evt.target.parentElement.className.split(' ')[0] === 'card') changeHash(`${evt.target.parentElement.className.split(' ').pop()}/${evt.target.parentElement.id}`);
   if (evt.target.id === 'post-submit') onPostSubmit();
   if (evt.target.id === 'colorblind') color();
 });

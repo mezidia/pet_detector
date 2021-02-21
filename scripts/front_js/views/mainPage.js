@@ -17,14 +17,13 @@ const display = (data) => {
    <div style="height: 50px"></div>
   <h1>${data.status === 'lost' ? 'Загублені улюбленці' : 'Знайдені улюбленці'}</h1>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4" style="margin: 0 0 0 0">
-    ${data.data.map(pet => `<div class="card" style="min-width: 100px">
+    ${data.data.map(pet => `<div class="card ${data.status}" id="${pet._id}" style="min-width: 100px">
       <img class="card-img-top" src="${pet.photo}" alt="Фотографія тварини">
       <div class="card-body">
         <h5 class="card-title">Вид - ${pet.animal}</h5>
         ${pet.breed ? `<h6>Порода тварини - ${pet.breed} </h6>` : ''}
         <h6>Колір тварини - ${pet.color}</h6>
         ${pet.description ? `<h6>Опис тварини - ${pet.description} </h6>` : ''}
-        <button type="button" class="infobtn btn btn-primary ${data.status}" id="${pet._id}">Info</button>
       </div>
       <div class="card-footer">
         <small class="text-muted">Опубліковано: ${getNormalTimeStr(pet.date)}</small>

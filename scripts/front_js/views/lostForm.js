@@ -85,9 +85,6 @@ const display = () => {
           <small  class="form-text text-muted">Даний номер телефону зможуть побачити інші користувачі!</small>
         </div>
       </fieldset>
-      <div id="g-recaptcha-box">
-        <div class="g-recaptcha" data-sitekey="6LfER2AaAAAAAAZC3D1nW1ViH6m3JBgY0Y8Z228e"></div>
-      </div>
       <button type="submit" id="lost-submit" class="btn btn-primary" style="height: 50px; width: 250px">Надіслати</button>
     </form>
     </div>

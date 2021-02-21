@@ -4772,6 +4772,10 @@ input[type="button"].btn-block {
   margin: 5px;
 }
 
+.card > * {
+  cursor: pointer;
+}
+
 .card:hover {
   -webkit-box-shadow: 4px 15px 8px 0px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 4px 15px 8px 0px rgba(34, 60, 80, 0.2);
