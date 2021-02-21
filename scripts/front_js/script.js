@@ -8,6 +8,8 @@ const router = new Router();
 const client = new Client();
 const engine = new RenderEngine();
 
+const MAXIMGSIZE = 100000;
+
 function checkRecaptcha() {
   const response = grecaptcha.getResponse();
   if(response.length === 0) {
@@ -49,6 +51,9 @@ const newFound = async (evt) => {
   const imgInput = document.getElementById('img-found');
   data.phoneNumber = document.getElementById('phone-found').value;
   data.photo = imgInput.files[0];
+  const size = data.photo.size;
+  console.log(size);
+  if (size > MAXIMGSIZE) return;
   if (!data.photo) return;
   const src = URL.createObjectURL(data.photo);
   data.photo = await toDataURL(src);
@@ -69,6 +74,9 @@ const newLost = async (evt) => {
   const imgInput = document.getElementById('img-lost');
   data.phoneNumber = document.getElementById('phone-lost').value;
   data.photo = imgInput.files[0];
+  const size = data.photo.size;
+  console.log(size);
+  if (size > MAXIMGSIZE) return;
   if (!data.photo) return;
   const src = URL.createObjectURL(data.photo);
   data.photo = await toDataURL(src);

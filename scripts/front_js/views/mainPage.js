@@ -11,8 +11,8 @@ const display = (data) => {
   if (data === null || Object.entries(data).length === 0) return '';
   return `
     <div class="row assign-btns" style="margin: 0 0 0 0;">
-      <button id="lost-assign" class="col-md-6 btn-primary btn-50"><u>Сповістити про втраченого улюбленця</u></button>
-      <button id="found-assign" class="col-md-6 btn-primary btn-50"><u>Сповістити про знайденого улюбленця</u></button>
+      <button id="lost-assign" class="col-md-6 btn-primary btn-50">Сповістити про втраченого улюбленця</button>
+      <button id="found-assign" class="col-md-6 btn-primary btn-50">Сповістити про знайденого улюбленця</button>
     </div>
    <div style="height: 50px"></div>
   <h1>${data.status === 'lost' ? 'Загублені улюбленці' : 'Знайдені улюбленці'}</h1>
