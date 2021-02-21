@@ -37,11 +37,13 @@ class Server {
   //handles request to server
   handleRequest(req, res) {
     let name = req.url;
-    console.log(name);
+
     const code = name.split('/');
+    console.log(code);
     if (name === '/lost' || name === '/found') this.returnByTableName(name, res);
     else if (code[1] === 'card') this.addNew(req, name);
     else if (code[0] === 'code') this.returnById(name, res);
+    else if (code[1] === 'case') this.returnById(code[2] + '/' + code[2], res);
     else this.handleFile(name, res);
   }
 
@@ -60,7 +62,6 @@ class Server {
     response.data = [];
     response.status = name;
     const data = await this.database.getAllByTableName(name);
-    console.log(data);
     for (let i = 0; i < data.length; i++) {
       const card = data[i]._doc;
       response.data[i] = {};

@@ -1,5 +1,6 @@
 const display = (data) => {
-  data = data.data;
+  console.log(data);
+  data = data[0];
   return `
   <div class="container-fluid">
     <div class="row">
@@ -13,6 +14,10 @@ const display = (data) => {
         <p>Опис: ${data.description}</p>
         <hr>
         <h1>Контакти</h1>
+        <div id="g-recaptcha-box">
+        <div class="g-recaptcha" data-sitekey="6LfER2AaAAAAAAZC3D1nW1ViH6m3JBgY0Y8Z228e"></div>
+        </div>
+        <button type="buton" id="post-submit" class="btn btn-primary">Надіслати</button>
         <h2>Електронна пошта: ${data.email}</h2>
         <h2>Номер телефону: ${data.phoneNumber}</h2>
       </div>

@@ -79,9 +79,9 @@ const newLost = async (evt) => {
 document.addEventListener('click', (evt) => {
   if (evt.target.id === 'lost-submit') newLost();
   if (evt.target.id === 'found-submit') newFound();
-  if(evt.target.id === 'found-assign') changeHash('foundForm');
-  if(evt.target.id === 'lost-assign') changeHash('lostForm');
-  if(evt.target.className.split(' ')[0] === 'infobtn') changeHash(`${evt.target.className.split(' ').pop()}/${evt.target.id}`);
+  if (evt.target.id === 'found-assign') changeHash('foundForm');
+  if (evt.target.id === 'lost-assign') changeHash('lostForm');
+  if (evt.target.className.split(' ')[0] === 'infobtn') changeHash(`${evt.target.className.split(' ').pop()}/${evt.target.id}`);
 });
 
 async function loadMain() {

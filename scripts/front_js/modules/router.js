@@ -21,7 +21,8 @@ export default class Router {
       'found': {viewName: endURL ? 'post' : 'mainPage', endpointName: endURL ? `case/found/${endURL}` : 'found'},
       'lost': {viewName: endURL ? 'post' : 'mainPage', endpointName: endURL ? `case/lost/${endURL}` : 'lost'},
       'lostForm': {viewName: 'lostForm', endpointName: ''},
-      'foundForm': {viewName: 'foundForm', endpointName: ''}
+      'foundForm': {viewName: 'foundForm', endpointName: ''},
+      'chartView' : {viewName: 'chartView', endpointName: ''},
     })[midURL] || {viewName: 'mainPage', endpointName: 'found'};
   }
 
