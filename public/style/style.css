@@ -13,3 +13,14 @@
     padding-left: 0;
     padding-right: 0;
 }
+
+#wrap-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+h2 {
+    font-size: 24px;
+}
