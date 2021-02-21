@@ -20,7 +20,7 @@ const display = () => {
     <form action="/" method="POST">
       <fieldset>
         <legend>Загубили своє щастя?</legend>
-        <h5>Що за тваринка?</h5>
+        <h5>Що за тваринка?*</h5>
         <div class="form-group">
           <select id="animalType-lost" class="custom-select">
             <option value="Змійка">Змійка</option>
@@ -34,7 +34,12 @@ const display = () => {
             <option value="Інше">Інше</option>
           </select>
         </div>
-        <h5>Якого віку, улюбленець?</h5>
+        <h5>Якого виду чи породи, на вашу думку, тварина?*</h5>
+        <div class="form-group">
+        <input type="text" class="form-control" pattern=\[A-Za-z]+\ id="breed-lost" aria-describedby="emailHelp" placeholder="Зазначте будь ласка породу чи вид" required>
+        <small class="form-text text-muted">Будь ласка, використовуйте латинські літери.</small>
+        </div>
+        <h5>Якого віку, улюбленець?*</h5>
         <div class="form-group">
           <select id="age-lost" class="custom-select">
             <option value="Молода">Молода</option>
@@ -42,7 +47,7 @@ const display = () => {
             <option value="Старенька">Старенька</option>
           </select>
         </div>
-        <h5>Оберіть колір, що найбільше підходить тварині</h5>
+        <h5>Оберіть колір, що найбільше підходить тварині.*</h5>
         <div class="form-group">
           <select id="color-lost" class="custom-select">
             <option selected="" value="Рудий">Рудий</option>
@@ -57,22 +62,22 @@ const display = () => {
           </select>
         </div>
         <div class="form-group">
-          <h5>Прикріпіть будь ласка фото тварини</h5>
+          <h5>Прикріпіть будь ласка фото тварини.*</h5>
           <input type="file" accept=".jpg, .jpeg, .png" class="form-control-file" id="img-lost" aria-describedby="fileHelp" required>
           <small id="fileHelp" class="form-text text-muted">Без фото улюбленця, господар не зможе його опізнати.</small>
         </div>
         <div class="form-group">
-          <h5>Опишіть тваринку</h5>
+          <h5>Опишіть тваринку.</h5>
           <textarea class="form-control" id="disc-lost" rows="3" placeholder="Можете зазначити кличку, особливі прикмети тварини чи місце де ви могли загубити її." ></textarea>
           <small id="descHelp" class="form-text text-muted">Даний пункт не є обов'язковим, але значно підвищує шанс того, що на вашу картку відгукнуться=)</small>
         </div>
         <div class="form-group">
-          <h5>Введіть ваш email</h5>
+          <h5>Введіть ваш email.*</h5>
           <input type="email" class="form-control" id="email-lost" aria-describedby="emailHelp" placeholder="vasyaPupkin@gmail.com" required>
           <small id="emailHelp" class="form-text text-muted">Даний email зможуть побачити інші користувачі!</small>
         </div>
         <div class="form-group">
-          <h5>Введіть ваш номер телефону</h5>
+          <h5>Введіть ваш номер телефону.*</h5>
           <input class="form-control" placeholder="066 123 4567" id="phone-lost" type="tel" name="phone"
           pattern="[0-9]{3} [0-9]{3} [0-9]{4}"
           required>
