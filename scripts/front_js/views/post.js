@@ -33,7 +33,7 @@ const display = (data) => {
         <div id="g-recaptcha-box">
         <div class="g-recaptcha" data-sitekey="6LfER2AaAAAAAAZC3D1nW1ViH6m3JBgY0Y8Z228e"></div>
         </div>
-        <button type="buton" id="post-submit" class="btn btn-primary" style="min-height: 50px; min-width: 200px">Надіслати</button>
+        <button type="buton" id="post-submit" class="btn btn-primary" style="min-height: 50px; min-width: 200px">Показати контакти</button>
       </div>
     </div>
   </div>
