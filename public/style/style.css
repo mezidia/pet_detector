@@ -24,3 +24,7 @@
 h2 {
     font-size: 24px;
 }
+
+canvas#chart {
+    background-color: white;
+}

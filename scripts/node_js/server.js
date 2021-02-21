@@ -60,9 +60,9 @@ class Server {
     const response = {};
     if (name === null) {
       const data = await this.database.getAllByTableName('lost');
-      response.lost = data;
+      response.lost = data.length;
       const data2 = await this.database.getAllByTableName('found');
-      response.found = data2;
+      response.found = data2.length;
     } else {
       name = name.substring(1);
       response.data = [];

@@ -3,6 +3,7 @@
 import RenderEngine from './modules/engine.js';
 import Router from './modules/router.js';
 import Client from './modules/client.js';
+import loadChart from './chart.js';
 
 const router = new Router();
 const client = new Client();
@@ -134,6 +135,12 @@ const mainF = () => {
     .then((viewModel) => {
       view = viewModel.default;
       return client.getData(endpointName);
+    }).then(() => {
+      if (viewName === 'chartView') {
+        client.getData('getForChart').then(data => {
+        loadChart(data);
+    });
+      }
     })
     .catch(reason => {
       console.log(reason);
