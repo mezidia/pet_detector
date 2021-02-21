@@ -45,6 +45,7 @@ const newFound = async (evt) => {
   data.color = document.getElementById('color-found').value;
   data.description = document.getElementById('disc-found').value;
   data.email = document.getElementById('email-found').value;
+  data.breed = document.getElementById('breed-found').value;
   const imgInput = document.getElementById('img-found');
   data.phoneNumber = document.getElementById('phone-found').value;
   data.photo = imgInput.files[0];
@@ -64,6 +65,7 @@ const newLost = async (evt) => {
   data.color = document.getElementById('color-lost').value;
   data.description = document.getElementById('disc-lost').value;
   data.email = document.getElementById('email-lost').value;
+  data.breed = document.getElementById('breed-lost').value;
   const imgInput = document.getElementById('img-lost');
   data.phoneNumber = document.getElementById('phone-lost').value;
   data.photo = imgInput.files[0];
@@ -93,9 +95,9 @@ const onPostSubmit = () => {
   });
 }
 
-const colorBlind = (color= true) => () => {
+const colorBlind = (color = true) => () => {
   if(color) {
-    document.querySelector('*').style.filter = 'grayscale(100%)';
+    document.querySelector(':not(img)').style.filter = 'grayscale(100%)';
   } else {
     document.querySelector('*').style.filter = 'grayscale(0)';
   }

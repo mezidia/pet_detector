@@ -4,7 +4,6 @@ const display = (data) => {
   console.log(data);
   function getNormalTimeStr(timeStr) {
     const time = new Date(+timeStr);
-    console.log(time);
     const theyear = time.getFullYear();
     const themonth = time.getMonth() + 1;
     const thetoday = time.getDate();
