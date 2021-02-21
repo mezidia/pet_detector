@@ -47,10 +47,10 @@ const newFound = async (evt) => {
   data.breed = document.getElementById('breed-found').value;
   const imgInput = document.getElementById('img-found');
   data.phoneNumber = document.getElementById('phone-found').value;
-  if (!data.photo) return 0;
   data.photo = imgInput.files[0];
   const size = data.photo.size;
   console.log(size);
+  if (!data.photo) return 0;
   if (size > MAXIMGSIZE) return 0;
   const src = URL.createObjectURL(data.photo);
   data.photo = await toDataURL(src);
@@ -69,10 +69,10 @@ const newLost = async (evt) => {
   data.breed = document.getElementById('breed-lost').value;
   const imgInput = document.getElementById('img-lost');
   data.phoneNumber = document.getElementById('phone-lost').value;
-  if (!data.photo) return 0;
   data.photo = imgInput.files[0];
   const size = data.photo.size;
   console.log(size);
+  if (!data.photo) return 0;
   if (size > MAXIMGSIZE) return 0;
   const src = URL.createObjectURL(data.photo);
   data.photo = await toDataURL(src);
@@ -108,12 +108,10 @@ const colorBlind = (color = true) => () => {
   color = !color;
 }
 
-document.addEventListener('submit', (evt) => {
-  if (evt.target.id === 'lost-submit') newLost();
-  if (evt.target.id === 'found-submit') newFound();
-});
 const color = colorBlind();
 document.addEventListener('click', (evt) => {
+  if (evt.target.id === 'lost-submit') newLost();
+  if (evt.target.id === 'found-submit') newFound();
   if (evt.target.id === 'found-assign') changeHash('foundForm');
   if (evt.target.id === 'lost-assign') changeHash('lostForm');
   if (evt.target.parentElement.className.split(' ')[0] === 'card') changeHash(`${evt.target.parentElement.className.split(' ').pop()}/${evt.target.parentElement.id}`);
