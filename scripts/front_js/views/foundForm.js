@@ -16,7 +16,7 @@ const display = () => {
     insertApi(lastNode);
   }
 
-  return `<div class="container" style="max-width: 550px;"><form action="/" method="POST">
+  return `<div class="container" style="max-width: 550px;"><form action="#" method="POST">
       <fieldset>
         <legend>Знайшли чіюсь радість?</legend>
         <h5>Що за тваринка?*</h5>
@@ -85,9 +85,6 @@ const display = () => {
           <small  class="form-text text-muted">Даний номер телефону зможуть побачити інші користувачі!</small>
         </div>
       </fieldset>
-      <div id="g-recaptcha-box">
-        <div class="g-recaptcha" data-sitekey="6LfER2AaAAAAAAZC3D1nW1ViH6m3JBgY0Y8Z228e"></div>
-      </div>
       <button type="submit" id="found-submit" class="btn btn-primary" style="width: 250px; height: 50px">Надіслати</button>
     </form>
     </div>`
