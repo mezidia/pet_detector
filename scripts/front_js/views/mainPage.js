@@ -27,7 +27,7 @@ const display = (data) => {
         <button type="button" class="infobtn btn btn-primary ${data.status}" id="${pet._id}">Info</button>
       </div>
       <div class="card-footer">
-        <small class="text-muted">Опрелюднено: ${getNormalTimeStr(pet.date)}</small>
+        <small class="text-muted">Опубліковано: ${getNormalTimeStr(pet.date)}</small>
       </div>
     </div>`).join('\n')}
   </div>
