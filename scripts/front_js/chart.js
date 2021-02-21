@@ -2,17 +2,16 @@
 
 export default function loadChart(data) {
   const ctx = document.getElementById('chart').getContext('2d');
-  const chartWrapper = document.getElementById('graphic-wraper');
-  ctx.width = chartWrapper.width;
-  ctx.height = chartWrapper.height;
+  ctx.width = window.width;
+  ctx.height = window.height;
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['lost', 'found'],
+      labels: ['Загублені', 'Знайдені'], //
       datasets: [{
-        label: 'Мінімальна ціна гречки',
+        label: 'Загублені та знайдені улюбленці наразі',
         fill: false,
-        data: [data.lost.length, data.found.length],
+        data: [data.lost, data.found], //
         backgroundColor: 'rgba(127, 255, 212, 1)',
         borderColor: 'rgba(0, 0, 0, 0.3)',
         borderWidth: 1
