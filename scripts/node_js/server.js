@@ -37,20 +37,18 @@ class Server {
   //handles request to server
   handleRequest(req, res) {
     let name = req.url;
-
     const code = name.split('/');
     console.log(code);
     if (name === '/lost' || name === '/found') this.returnByTableName(name, res);
     else if (code[1] === 'card') this.addNew(req, name);
     else if (code[0] === 'code') this.returnById(name, res);
-    else if (code[1] === 'case') this.returnById(code[2] + '/' + code[2], res);
+    else if (code[1] === 'case') this.returnById(code[2] + '/' + code[3], res);
     else this.handleFile(name, res);
   }
 
   async returnById(name, res) {
     const nameSplit = name.split('/');
-    const response = await this.database.getAllByTableName(nameSplit[1], {_id: nameSplit[2]});
-    console.log(response);
+    const response = await this.database.find(nameSplit[0], {_id: nameSplit[1]});
     res.writeHead(200, { 'Content-Type': `text/plain; charset=utf-8` });
     res.write(JSON.stringify(response));
     res.end();
