@@ -137,12 +137,13 @@ const mainF = () => {
     .then((viewModel) => {
       view = viewModel.default;
       return client.getData(endpointName);
-    }).then(() => {
+    }).then(data => {
       if (viewName === 'chartView') {
         client.getData('getForChart').then(data => {
-        loadChart(data);
-    });
+          loadChart(data);
+        });
       }
+      return data;
     })
     .catch(reason => {
       console.log(reason);

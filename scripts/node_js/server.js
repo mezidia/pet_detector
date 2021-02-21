@@ -37,7 +37,9 @@ class Server {
   //handles request to server
   handleRequest(req, res) {
     let name = req.url;
+    console.log(name);
     const code = name.split('/');
+    console.log(code);
     if (name === '/lost' || name === '/found') this.returnByTableName(name, res);
     else if (name === '/getForChart') this.returnByTableName(null, res);
     else if (code[1] === 'card') this.addNew(req, name);
@@ -68,6 +70,7 @@ class Server {
       const data = await this.database.getAllByTableName(name);
       for (let i = 0; i < data.length; i++) {
         const card = data[i]._doc;
+        if (i > 9) break;
         response.data[i] = {};
         for (const key in card) {
           if (key === 'email') continue;
