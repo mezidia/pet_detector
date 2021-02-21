@@ -4768,7 +4768,15 @@ input[type="button"].btn-block {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
+  border-radius: 0;
+  margin: 5px;
+}
+
+.card:hover {
+  -webkit-box-shadow: 4px 15px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 15px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 15px 8px 0px rgba(34, 60, 80, 0.2);
+  border: 2px solid rgba(235, 1, 1, 0.125);
 }
 
 .card > hr {
@@ -10348,3 +10356,215 @@ a.text-dark:hover, a.text-dark:focus {
 .pagination a:hover {
   text-decoration: none;
 }
+<<<<<<< HEAD
+
+.table .text-muted {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.table-primary,
+.table-primary > th,
+.table-primary > td {
+  background-color: #df691a;
+}
+
+.table-secondary,
+.table-secondary > th,
+.table-secondary > td {
+  background-color: #4e5d6c;
+}
+
+.table-light,
+.table-light > th,
+.table-light > td {
+  background-color: #abb6c2;
+}
+
+.table-dark {
+  color: #fff;
+}
+
+.table-dark,
+.table-dark > th,
+.table-dark > td {
+  background-color: #4e5d6c;
+}
+
+.table-success,
+.table-success > th,
+.table-success > td {
+  background-color: #5cb85c;
+}
+
+.table-info,
+.table-info > th,
+.table-info > td {
+  background-color: #5bc0de;
+}
+
+.table-danger,
+.table-danger > th,
+.table-danger > td {
+  background-color: #d9534f;
+}
+
+.table-warning,
+.table-warning > th,
+.table-warning > td {
+  background-color: #f0ad4e;
+}
+
+.table-active,
+.table-active > th,
+.table-active > td {
+  background-color: rgba(255, 255, 255, 0.075);
+}
+
+.table-hover .table-primary:hover,
+.table-hover .table-primary:hover > th,
+.table-hover .table-primary:hover > td {
+  background-color: #c85e17;
+}
+
+.table-hover .table-secondary:hover,
+.table-hover .table-secondary:hover > th,
+.table-hover .table-secondary:hover > td {
+  background-color: #43505d;
+}
+
+.table-hover .table-light:hover,
+.table-hover .table-light:hover > th,
+.table-hover .table-light:hover > td {
+  background-color: #9caab7;
+}
+
+.table-hover .table-dark:hover,
+.table-hover .table-dark:hover > th,
+.table-hover .table-dark:hover > td {
+  background-color: #43505d;
+}
+
+.table-hover .table-success:hover,
+.table-hover .table-success:hover > th,
+.table-hover .table-success:hover > td {
+  background-color: #4cae4c;
+}
+
+.table-hover .table-info:hover,
+.table-hover .table-info:hover > th,
+.table-hover .table-info:hover > td {
+  background-color: #46b8da;
+}
+
+.table-hover .table-danger:hover,
+.table-hover .table-danger:hover > th,
+.table-hover .table-danger:hover > td {
+  background-color: #d43f3a;
+}
+
+.table-hover .table-warning:hover,
+.table-hover .table-warning:hover > th,
+.table-hover .table-warning:hover > td {
+  background-color: #eea236;
+}
+
+.table-hover .table-active:hover,
+.table-hover .table-active:hover > th,
+.table-hover .table-active:hover > td {
+  background-color: rgba(255, 255, 255, 0.075);
+}
+
+label,
+.radio label,
+.checkbox label,
+.help-block {
+  font-size: 0.875rem;
+}
+
+.nav-tabs .nav-link,
+.nav-tabs .nav-link:hover,
+.nav-pills .nav-link,
+.nav-pills .nav-link:hover {
+  color: #ebebeb;
+}
+
+.nav-tabs .nav-link.disabled,
+.nav-pills .nav-link.disabled {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.page-link:hover,
+.page-link:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+.alert {
+  border: none;
+  color: #fff;
+}
+
+.alert a,
+.alert .alert-link {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.alert-primary {
+  background-color: #df691a;
+}
+
+.alert-secondary {
+  background-color: #4e5d6c;
+}
+
+.alert-success {
+  background-color: #5cb85c;
+}
+
+.alert-info {
+  background-color: #5bc0de;
+}
+
+.alert-warning {
+  background-color: #f0ad4e;
+}
+
+.alert-danger {
+  background-color: #d9534f;
+}
+
+.alert-light {
+  background-color: #abb6c2;
+}
+
+.alert-dark {
+  background-color: #4e5d6c;
+}
+
+.badge-warning, .badge-info {
+  color: #fff;
+}
+
+.close {
+  color: #fff;
+  text-shadow: none;
+  opacity: .5;
+}
+
+.close:hover, .close:focus {
+  opacity: 1;
+}
+
+.popover-header {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.modal-header, .modal-footer {
+  background-color: rgba(255, 255, 255, 0.075);
+}
+
+
+=======
+>>>>>>> 7c874e1cde600f937c4d0e5b68e66cbeb75bf8b3
