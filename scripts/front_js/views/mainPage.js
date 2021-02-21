@@ -1,7 +1,6 @@
 'use strict';
 
 const display = (data) => {
-  console.log(data);
   function getNormalTimeStr(timeStr) {
     const time = new Date(+timeStr);
     const theyear = time.getFullYear();
@@ -10,7 +9,6 @@ const display = (data) => {
     return `${thetoday}/${themonth}/${theyear}`;
   }
   if (data === null || Object.entries(data).length === 0) return '';
-  console.log(+data.data[0].date);
   return `
     <div class="row assign-btns" style="margin: 0 0 0 0;">
       <button id="lost-assign" class="col-md-6 btn-primary btn-50"><u>Сповістити про втраченого улюбленця</u></button>
