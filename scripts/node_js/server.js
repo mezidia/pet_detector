@@ -37,9 +37,7 @@ class Server {
   //handles request to server
   handleRequest(req, res) {
     let name = req.url;
-    console.log(name);
     const code = name.split('/');
-    console.log(code);
     if (name === '/lost' || name === '/found') this.returnByTableName(name, res);
     else if (name === '/getForChart') this.returnByTableName(null, res);
     else if (code[1] === 'card') this.addNew(req, name);

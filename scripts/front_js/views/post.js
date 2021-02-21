@@ -27,7 +27,7 @@ const display = (data) => {
         <h1 style="text-align: center">${data.animal}</h1>
         <h2>Порода: ${data.breed}</h2>
         <h2>Колір: ${data.color}</h2>
-        <h5>Опис: ${data.description}</h5>
+        <h2>${data.description ? `<h6>Опис тварини - ${data.description} </h6>` : ''}</h2>
         <hr style="margin-left: calc(-5px - 0.2vw)">
         <h1 style="text-align: center">Контакти</h1>
         <div id="g-recaptcha-box">
