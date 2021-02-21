@@ -61,7 +61,6 @@ const newFound = async (evt) => {
 }
 
 const newLost = async (evt) => {
-  if (!checkRecaptcha()) return 0;
   const data = {};
   data.animal = document.getElementById('animalType-lost').value;
   data.age = document.getElementById('age-lost').value;
@@ -84,7 +83,6 @@ const newLost = async (evt) => {
 
 }
 const onPostSubmit = () => {
-  if (!checkRecaptcha()) return;
   console.log(router.getHash());
   client.getData(`case/${router.getHash()}`)
   .then((data) => {
