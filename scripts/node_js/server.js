@@ -37,10 +37,11 @@ class Server {
   //handles request to server
   handleRequest(req, res) {
     let name = req.url;
-
+    console.log(name);
     const code = name.split('/');
     console.log(code);
     if (name === '/lost' || name === '/found') this.returnByTableName(name, res);
+    else if (name === '/getForChart') this.returnByTableName(null, res);
     else if (code[1] === 'card') this.addNew(req, name);
     else if (code[0] === 'code') this.returnById(name, res);
     else if (code[1] === 'case') this.returnById(code[2] + '/' + code[2], res);
@@ -57,18 +58,25 @@ class Server {
   }
 
   async returnByTableName(name, res) {
-    name = name.substring(1);
     const response = {};
-    response.data = [];
-    response.status = name;
-    const data = await this.database.getAllByTableName(name);
-    for (let i = 0; i < data.length; i++) {
-      const card = data[i]._doc;
-      response.data[i] = {};
-      for (const key in card) {
-        if (key === 'email') continue;
-        if (key === 'phoneNumber') continue;
-        response.data[i][key] = card[key];
+    if (name === null) {
+      const data = await this.database.getAllByTableName('lost');
+      response.lost = data;
+      const data2 = await this.database.getAllByTableName('found');
+      response.found = data2;
+    } else {
+      name = name.substring(1);
+      response.data = [];
+      response.status = name;
+      const data = await this.database.getAllByTableName(name);
+      for (let i = 0; i < data.length; i++) {
+        const card = data[i]._doc;
+        response.data[i] = {};
+        for (const key in card) {
+          if (key === 'email') continue;
+          if (key === 'phoneNumber') continue;
+          response.data[i][key] = card[key];
+        }
       }
     }
     res.writeHead(200, { 'Content-Type': `text/plain; charset=utf-8` });
