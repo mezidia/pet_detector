@@ -32,3 +32,7 @@ h1 {
 canvas#chart {
     background-color: white;
 }
+
+.card {
+    margin: 0 0 0 0;
+}
