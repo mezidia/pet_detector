@@ -9,10 +9,8 @@ const display = () => {
   }
   let lastNode = document.head.childNodes[document.head.childNodes.length - 2];
   if (lastNode.id === 'mainScr') {
-    console.log(lastNode);
     insertApi(lastNode);
   } else if (lastNode.id === 'api') {
-    console.log(lastNode);
     lastNode.remove();
     lastNode = document.head.childNodes[document.head.childNodes.length - 2];
     insertApi(lastNode);

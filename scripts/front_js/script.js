@@ -75,13 +75,45 @@ const newLost = async (evt) => {
   client.post(data, 'card/lost');
 
 }
+const onPostSubmit = () => {
+  if (!checkRecaptcha()) return;
+  console.log(router.getHash());
+  client.getData(`case/${router.getHash()}`)
+  .then((data) => {
+    console.log(data);
+    data = data[0];
+    const html = `
+    <h2>Електронна пошта: ${data.email}</h2>
+    <h2>Номер телефону: ${data.phoneNumber}</h2>
+    `;
+    const capcha = document.getElementById('g-recaptcha-box');
+    capcha.insertAdjacentHTML('afterEnd', html);
+    capcha.remove();
+    document.getElementById('post-submit').remove();
+  });
+}
 
+const colorBlind = (color= true) => () => {
+  if(color) {
+    document.querySelector('*').style.filter = 'grayscale(100%)';
+  } else {
+    document.querySelector('*').style.filter = 'grayscale(0)';
+  }
+  color = !color;
+}
+const color = colorBlind();
 document.addEventListener('click', (evt) => {
   if (evt.target.id === 'lost-submit') newLost();
   if (evt.target.id === 'found-submit') newFound();
   if (evt.target.id === 'found-assign') changeHash('foundForm');
   if (evt.target.id === 'lost-assign') changeHash('lostForm');
   if (evt.target.className.split(' ')[0] === 'infobtn') changeHash(`${evt.target.className.split(' ').pop()}/${evt.target.id}`);
+  if (evt.target.id === 'post-submit') onPostSubmit();
+  if (evt.target.id === 'colorblind') color();
+});
+
+document.addEventListener('input', (evt) => {
+  if (evt.target.id === 'hue') document.querySelector('body').style.filter = `hue-rotate(${evt.target.value}deg)`
 });
 
 async function loadMain() {

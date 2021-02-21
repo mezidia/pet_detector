@@ -14,12 +14,12 @@ const display = (data) => {
   console.log(+data.data[0].date);
   return `
     <div class="row assign-btns" style="margin: 0 0 0 0;">
-      <button id="lost-assign" class="col-md-6 btn-primary btn-50">Сповістити про втраченого улюбленця</button>
-      <button id="found-assign" class="col-md-6 btn-primary btn-50">Сповістити про знайденого улюбленця</button>
+      <button id="lost-assign" class="col-md-6 btn-primary btn-50"><u>Сповістити про втраченого улюбленця</u></button>
+      <button id="found-assign" class="col-md-6 btn-primary btn-50"><u>Сповістити про знайденого улюбленця</u></button>
     </div>
    <div style="height: 50px"></div>
   <h1>${data.status === 'lost' ? 'Загублені улюбленці' : 'Знайдені улюбленці'}</h1>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 style="max-width: 100%">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" style="margin: 0 0 0 0">
     ${data.data.map(pet => `<div class="card" style="min-width: 100px">
       <img class="card-img-top" src="${pet.photo}" alt="Фотографія тварини">
       <div class="card-body">
