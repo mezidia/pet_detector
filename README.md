@@ -44,7 +44,7 @@ The team _"Hackatsuki"_ participated in the hackathon, and this repository is ou
 
 - Black and white mode
 
-![Screenshot 4](https://raw.githubusercontent.com/mezgoodle/images/masterpet-detector4.png)
+![Screenshot 4](https://raw.githubusercontent.com/mezgoodle/images/master/pet-detector4.png)
 
 ## Tech/framework used :wrench:
 
